@@ -1,24 +1,30 @@
-# README
+# Dealmaker Clone
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app has been initilized as per https://docs.docker.com/compose/rails/
 
-Things you may want to cover:
+## Build Image
+`docker-compose build`
 
-* Ruby version
+## Initialize DB
+`docker-compose run web rails db:create`
 
-* System dependencies
+## Run Migrations
+`docker-compose run web rails db:migrate`
 
-* Configuration
+## Seed DB
+`docker-compose run web rails db:seed`
 
-* Database creation
+## Run Tests
+`docker-compose run web rails test`
 
-* Database initialization
+NOTE: coverage report available at `/coverage/index.html` and is best viewed in a web browser as a `file://` etc
 
-* How to run the test suite
+## Rubocop
+`docker-compose run web rubocop`
 
-* Services (job queues, cache servers, search engines, etc.)
+## Run Container
+`docker-compose up`
 
-* Deployment instructions
+(server should now be accessible at http://localhost:3000)
 
-* ...
+NOTE: if any permission errors are encountered with docker, try changing the ownership of the generated files, ie. `sudo chown -R $USER:$USER .` and/or rerunning the command with `sudo`
