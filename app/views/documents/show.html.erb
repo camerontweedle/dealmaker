@@ -1,0 +1,7 @@
+<p id="notice"><%= notice %></p>
+
+<hr>
+<%= simple_format(@document.output) %>
+
+<hr>
+<%= link_to 'Back', template_documents_path(@template), { :class => ['btn', 'btn-primary'] } %>

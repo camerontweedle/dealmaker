@@ -1,0 +1,28 @@
+<%= form_with(model: [@template, document], local: true) do |form| %>
+  <% if document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+      <ul>
+      <% document.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <hr>
+
+  <%= form.hidden_field 'template_id', value: @template.id %>
+
+  <% @template.questions.each do |q| %>
+    <div class="form-group">
+      <%= form.label q.content %>
+      <%= form.text_field "answers[#{q.id}]", { :class => ['form-control'] } %>
+    </div>
+  <% end %>
+
+  <div class="mt-2">
+    <%= form.submit 'Save', { :class => ['float-left', 'btn', 'btn-primary'] } %>
+  </div>
+<% end %>

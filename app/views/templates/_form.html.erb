@@ -1,0 +1,39 @@
+<%= form_with(model: template, local: true) do |form| %>
+  <% if template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(template.errors.count, "error") %> prohibited this template from being saved:</h2>
+
+      <ul>
+      <% template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, { :class => ['form-control'] } %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :content %>
+    <%= form.text_area :content, { :class => ['form-control'], :rows => 10 } %>
+    <small id="passwordHelpBlock" class="form-text text-muted">
+      to include a question, use the {{@:question_id}} format
+    </small>
+  </div>
+
+  <h3>Questions</h3>
+  <%= form.collection_check_boxes(:question_ids, Question.all, :id, :to_s) do |question| %>
+    <div class="form-check">
+      <%= question.check_box(class: 'form-check-input') + " (#{question.object[:id]}) #{question.object[:label]}" %>
+      <%= question.label(class: 'form-check-label') { '' } %>
+    </div>
+  <% end %>
+
+  <hr>
+  <div class="mt-2">
+    <%= form.submit 'Save', { :class => ['float-left', 'btn', 'btn-primary'] } %>
+  </div>
+<% end %>

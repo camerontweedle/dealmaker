@@ -13,3 +13,13 @@
  *= require_tree .
  *= require_self
  */
+
+$primary: (
+  color: #26a69a,
+  dark:  darken(#26a69a, 10%),
+  light: lighten(#26a69a, 10%)
+);
+
+@import "material";
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+

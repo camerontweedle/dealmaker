@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Documents - <%= @template.name %></h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Questions</th>
+      <th>Answers</th>
+      <th>Created</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @documents.each do |document| %>
+      <tr>
+        <td><%= @template.questions.count %></td>
+        <td><%= document.answers.count %></td>
+        <td><%= document.created_at %></td>
+        <td><%= link_to 'View', template_document_path(@template, document), { :class => ['btn', 'btn-sm', 'btn-primary']} %></td>
+        <td><%= link_to 'View PDF', template_document_path(@template, document, 'pdf'), { :class => ['btn', 'btn-sm', 'btn-primary']} %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Document', new_template_document_path(@template), { :class => ['btn', 'btn-primary'] } %>
